@@ -7,17 +7,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.gmail.markdevw.trying_mvp.R;
+import com.gmail.markdevw.trying_mvp.main.presenter.ItemPresenter;
+import com.gmail.markdevw.trying_mvp.main.presenter.MainPresenter;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainView {
 
     @Bind(R.id.rv_activity_main)
     RecyclerView mRecyclerView;
 
     @Bind(R.id.tb_activity_main)
     Toolbar mToolbar;
+
+    private ItemPresenter itemPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
+
+        itemPresenter = new MainPresenter(this);
     }
 
     @Override
