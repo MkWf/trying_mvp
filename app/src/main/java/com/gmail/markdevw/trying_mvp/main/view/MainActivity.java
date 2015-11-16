@@ -8,6 +8,8 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.gmail.markdevw.trying_mvp.R;
 import com.gmail.markdevw.trying_mvp.main.presenter.ItemPresenter;
@@ -23,6 +25,9 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
     @Bind(R.id.tb_activity_main)
     Toolbar mToolbar;
+
+    @Bind(R.id.pb_item_search)
+    ProgressBar mProgressBar;
 
     private ItemPresenter itemPresenter;
 
@@ -56,5 +61,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
             }
         });
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }

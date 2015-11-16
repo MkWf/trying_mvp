@@ -15,6 +15,6 @@ public class MainPresenter implements ItemPresenter{
 
     @Override
     public void searchForItems(String search) {
-
+        mainView.showProgressBar();
     }
 }
