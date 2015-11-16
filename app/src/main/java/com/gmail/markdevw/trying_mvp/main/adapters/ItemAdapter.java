@@ -21,11 +21,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
 
     List<String> items;
 
+    public ItemAdapter(){
+        items = new ArrayList<>();
+    }
+
     @Override
     public ItemAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int index) {
         View inflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_search, viewGroup, false);
-
-        items = new ArrayList<>();
 
         return new ItemAdapterViewHolder(inflate);
     }
@@ -37,7 +39,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
 
     @Override
     public int getItemCount() {
-       return items.size();
+        if(items != null){
+            return items.size();
+        }else{
+            return 0;
+        }
+    }
+
+    public void setItems(List<String> data) {
+        items.addAll(data);
     }
 
     class ItemAdapterViewHolder extends RecyclerView.ViewHolder {
