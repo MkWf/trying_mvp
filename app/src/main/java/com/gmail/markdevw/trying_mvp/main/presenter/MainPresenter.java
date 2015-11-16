@@ -18,12 +18,12 @@ public class MainPresenter implements ItemPresenter, OnSearchFinishedListener{
     @Override
     public void performSearch(String search) {
         mainView.showProgressBar();
-        itemInteractor.searchForItems(search);
+        itemInteractor.searchForItems(search, this);
     }
 
     @Override
     public void onSuccess() {
-        
+
     }
 
     @Override
