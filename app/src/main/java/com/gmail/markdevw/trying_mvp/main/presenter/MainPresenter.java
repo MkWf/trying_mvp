@@ -3,6 +3,8 @@ package com.gmail.markdevw.trying_mvp.main.presenter;
 import com.gmail.markdevw.trying_mvp.main.interactors.ItemInteractor;
 import com.gmail.markdevw.trying_mvp.main.view.MainView;
 
+import java.util.List;
+
 /**
  * Created by Mark on 11/16/2015.
  */
@@ -22,12 +24,13 @@ public class MainPresenter implements ItemPresenter, OnSearchFinishedListener{
     }
 
     @Override
-    public void onSuccess() {
-
+    public void onSuccess(List<String> result) {
+        mainView.hideProgressBar();
+        mainView.setAdapter(result);
     }
 
     @Override
     public void onError() {
-
+        mainView.hideProgressBar();
     }
 }
