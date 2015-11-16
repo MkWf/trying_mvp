@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-            itemPresenter.searchForItems(query);
+            itemPresenter.performSearch(query);
                 return true;
             }
 

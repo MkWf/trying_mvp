@@ -1,5 +1,6 @@
 package com.gmail.markdevw.trying_mvp.main.presenter;
 
+import com.gmail.markdevw.trying_mvp.main.interactors.ItemInteractor;
 import com.gmail.markdevw.trying_mvp.main.view.MainView;
 
 /**
@@ -8,13 +9,15 @@ import com.gmail.markdevw.trying_mvp.main.view.MainView;
 public class MainPresenter implements ItemPresenter{
 
     private MainView mainView;
+    private ItemInteractor itemInteractor;
 
     public MainPresenter(MainView mainView) {
         this.mainView = mainView;
     }
 
     @Override
-    public void searchForItems(String search) {
+    public void performSearch(String search) {
         mainView.showProgressBar();
+        itemInteractor.searchForItems(search);
     }
 }
