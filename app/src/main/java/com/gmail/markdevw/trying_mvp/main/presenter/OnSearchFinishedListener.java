@@ -7,5 +7,5 @@ import java.util.List;
  */
 public interface OnSearchFinishedListener {
     public void onSuccess(List<String> result);
-    public void onError();
+    public void onError(String search);
 }

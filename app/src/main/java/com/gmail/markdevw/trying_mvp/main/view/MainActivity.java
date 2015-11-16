@@ -12,11 +12,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.gmail.markdevw.trying_mvp.R;
 import com.gmail.markdevw.trying_mvp.main.adapters.ItemAdapter;
 import com.gmail.markdevw.trying_mvp.main.presenter.ItemPresenter;
 import com.gmail.markdevw.trying_mvp.main.presenter.MainPresenter;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -49,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(itemAdapter);
-        mRecyclerView.setHasFixedSize(true);
     }
 
     @Override
@@ -81,5 +83,16 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setAdapter(List<String> result) {
+        itemAdapter.setItems(result);
+        itemAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showError(String search) {
+        Toast.makeText(this, "Failed to retrieve items for " + search, Toast.LENGTH_LONG).show();
     }
 }

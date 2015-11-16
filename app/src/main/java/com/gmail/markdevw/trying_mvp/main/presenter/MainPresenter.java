@@ -1,6 +1,7 @@
 package com.gmail.markdevw.trying_mvp.main.presenter;
 
 import com.gmail.markdevw.trying_mvp.main.interactors.ItemInteractor;
+import com.gmail.markdevw.trying_mvp.main.interactors.MainInteractor;
 import com.gmail.markdevw.trying_mvp.main.view.MainView;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class MainPresenter implements ItemPresenter, OnSearchFinishedListener{
 
     public MainPresenter(MainView mainView) {
         this.mainView = mainView;
+        itemInteractor = new MainInteractor();
     }
 
     @Override
@@ -30,7 +32,8 @@ public class MainPresenter implements ItemPresenter, OnSearchFinishedListener{
     }
 
     @Override
-    public void onError() {
+    public void onError(String search) {
         mainView.hideProgressBar();
+        mainView.showError(search);
     }
 }
