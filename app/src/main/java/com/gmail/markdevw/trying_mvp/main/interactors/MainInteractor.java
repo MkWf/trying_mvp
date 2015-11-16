@@ -16,7 +16,8 @@ public class MainInteractor implements ItemInteractor {
         int size = 20;
         List<String> fakeItems = new ArrayList<>(size);
         for(int i = 0; i < size + 1; i++){
-            fakeItems.add(search + " item #" + i+1);
+            int j = i + 1;
+            fakeItems.add(search + " item #" + j);
         }
 
         //50-50 chance of "retrieving" items or displaying an error to test both scenarios
