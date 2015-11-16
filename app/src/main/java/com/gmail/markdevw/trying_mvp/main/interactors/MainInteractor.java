@@ -7,6 +7,6 @@ public class MainInteractor implements ItemInteractor {
 
     @Override
     public void searchForItems(String search) {
-        
+
     }
 }

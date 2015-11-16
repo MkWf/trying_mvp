@@ -6,7 +6,7 @@ import com.gmail.markdevw.trying_mvp.main.view.MainView;
 /**
  * Created by Mark on 11/16/2015.
  */
-public class MainPresenter implements ItemPresenter{
+public class MainPresenter implements ItemPresenter, OnSearchFinishedListener{
 
     private MainView mainView;
     private ItemInteractor itemInteractor;
@@ -19,5 +19,15 @@ public class MainPresenter implements ItemPresenter{
     public void performSearch(String search) {
         mainView.showProgressBar();
         itemInteractor.searchForItems(search);
+    }
+
+    @Override
+    public void onSuccess() {
+        
+    }
+
+    @Override
+    public void onError() {
+
     }
 }
