@@ -3,6 +3,8 @@ package com.gmail.markdevw.trying_mvp.main.view;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.gmail.markdevw.trying_mvp.R;
+import com.gmail.markdevw.trying_mvp.main.adapters.ItemAdapter;
 import com.gmail.markdevw.trying_mvp.main.presenter.ItemPresenter;
 import com.gmail.markdevw.trying_mvp.main.presenter.MainPresenter;
 
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
     ProgressBar mProgressBar;
 
     private ItemPresenter itemPresenter;
+    private ItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,12 @@ public class MainActivity extends AppCompatActivity implements MainView {
         setSupportActionBar(mToolbar);
 
         itemPresenter = new MainPresenter(this);
+        itemAdapter = new ItemAdapter();
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(itemAdapter);
+        mRecyclerView.setHasFixedSize(true);
     }
 
     @Override
