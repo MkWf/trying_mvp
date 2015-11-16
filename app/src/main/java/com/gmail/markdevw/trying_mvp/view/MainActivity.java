@@ -1,7 +1,9 @@
-package com.gmail.markdevw.trying_mvp;
+package com.gmail.markdevw.trying_mvp.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.gmail.markdevw.trying_mvp.R;
 
 public class MainActivity extends AppCompatActivity {
 
