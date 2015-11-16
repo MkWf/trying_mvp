@@ -1,4 +1,4 @@
-package com.gmail.markdevw.trying_mvp.view;
+package com.gmail.markdevw.trying_mvp.main.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

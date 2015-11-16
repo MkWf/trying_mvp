@@ -1,4 +1,4 @@
-package com.gmail.markdevw.trying_mvp.presenter;
+package com.gmail.markdevw.trying_mvp.main.presenter;
 
 /**
  * Created by Mark on 11/16/2015.
