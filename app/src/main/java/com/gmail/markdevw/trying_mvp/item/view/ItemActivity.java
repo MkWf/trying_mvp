@@ -30,8 +30,9 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item);
         ButterKnife.bind(this);
-        
+
         title.setText(getIntent().getExtras().getString(ITEM_TITLE));
     }
 }
