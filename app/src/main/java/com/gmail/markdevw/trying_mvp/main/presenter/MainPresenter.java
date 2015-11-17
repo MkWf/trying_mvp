@@ -4,6 +4,7 @@ import com.gmail.markdevw.trying_mvp.main.interactors.ItemInteractor;
 import com.gmail.markdevw.trying_mvp.main.interactors.MainInteractor;
 import com.gmail.markdevw.trying_mvp.main.view.MainView;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -11,29 +12,38 @@ import java.util.List;
  */
 public class MainPresenter implements ItemPresenter, OnSearchFinishedListener{
 
-    private MainView mainView;
+    private WeakReference<MainView> mainView;
     private ItemInteractor itemInteractor;
 
-    public MainPresenter(MainView mainView) {
+    public MainPresenter(WeakReference<MainView> mainView) {
         this.mainView = mainView;
         itemInteractor = new MainInteractor();
     }
 
     @Override
     public void performSearch(String search) {
-        mainView.showProgressBar();
-        itemInteractor.searchForItems(search, this);
+        if(mainView != null){
+            MainView view = mainView.get();
+            view.showProgressBar();
+            itemInteractor.searchForItems(search, this);
+        }
     }
 
     @Override
     public void onSuccess(List<String> result) {
-        mainView.hideProgressBar();
-        mainView.setAdapter(result);
+        if(mainView != null){
+            MainView view = mainView.get();
+            view.hideProgressBar();
+            view.setAdapter(result);
+        }
     }
 
     @Override
     public void onError(String search) {
-        mainView.hideProgressBar();
-        mainView.showError(search);
+        if (mainView != null) {
+            MainView view = mainView.get();
+            view.hideProgressBar();
+            view.showError(search);
+        }
     }
 }
