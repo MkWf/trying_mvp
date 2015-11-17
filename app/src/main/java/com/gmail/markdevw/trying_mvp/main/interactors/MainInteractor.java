@@ -1,5 +1,7 @@
 package com.gmail.markdevw.trying_mvp.main.interactors;
 
+import android.os.Handler;
+
 import com.gmail.markdevw.trying_mvp.main.presenter.OnSearchFinishedListener;
 
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.Random;
 public class MainInteractor implements ItemInteractor {
 
     @Override
-    public void searchForItems(String search, OnSearchFinishedListener listener) {
+    public void searchForItems(final String search, final OnSearchFinishedListener listener) {
         int size = 20;
         List<String> fakeItems = new ArrayList<>(size);
         for(int i = 0; i < size + 1; i++){
@@ -20,18 +22,25 @@ public class MainInteractor implements ItemInteractor {
             fakeItems.add(search + " item #" + j);
         }
 
-        //50-50 chance of "retrieving" items or displaying an error to test both scenarios
-        Random ran = new Random();
-        int val = ran.nextInt(2);
+        createRandomDelayedResponse(fakeItems, listener, search);
+    }
 
-        switch(val){
-            case 0:
-                listener.onSuccess(fakeItems);
-                break;
-            case 1:
-                listener.onError(search);
-                break;
-        }
+    private void createRandomDelayedResponse(final List<String> items, final OnSearchFinishedListener listener, final String search){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Random ran = new Random();
+                int val = ran.nextInt(2);
 
+                switch(val){
+                    case 0:
+                        listener.onSuccess(items);
+                        break;
+                    case 1:
+                        listener.onError(search);
+                        break;
+                }
+            }
+        }, 5000);
     }
 }
