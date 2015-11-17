@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.gmail.markdevw.trying_mvp.R;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Mark on 11/16/2015.
@@ -29,7 +30,8 @@ public class ItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ButterKnife.bind(this);
+        
         title.setText(getIntent().getExtras().getString(ITEM_TITLE));
     }
 }
