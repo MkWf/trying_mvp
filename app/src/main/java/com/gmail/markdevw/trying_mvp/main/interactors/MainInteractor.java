@@ -41,6 +41,6 @@ public class MainInteractor implements ItemInteractor {
                         break;
                 }
             }
-        }, 5000);
+        }, 2000);
     }
 }
