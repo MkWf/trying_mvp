@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.gmail.markdevw.trying_mvp.R;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,12 @@ import butterknife.ButterKnife;
  */
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterViewHolder> {
 
-    List<String> items;
+    public static interface Delegate {
+        public void onItemClicked(ItemAdapter itemAdapter, String item);
+    }
+
+    private WeakReference<Delegate> delegate;
+    private List<String> items;
 
     public ItemAdapter(){
         items = new ArrayList<>();
@@ -50,7 +56,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         items.addAll(data);
     }
 
-    class ItemAdapterViewHolder extends RecyclerView.ViewHolder {
+    class ItemAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @Bind(R.id.item_title)
         TextView title;
@@ -58,10 +64,28 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemAdapterVie
         public ItemAdapterViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(this);
         }
 
         public void update(String item) {
             title.setText(item);
         }
+
+        @Override
+        public void onClick(View v) {
+            getDelegate().onItemClicked(ItemAdapter.this, title.getText().toString());
+        }
+    }
+
+    public Delegate getDelegate() {
+        if (delegate == null) {
+            return null;
+        }
+        return delegate.get();
+    }
+
+    public void setDelegate(Delegate delegate) {
+        this.delegate = new WeakReference<Delegate>(delegate);
     }
 }

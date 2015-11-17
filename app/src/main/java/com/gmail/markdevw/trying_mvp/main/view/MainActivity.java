@@ -24,7 +24,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity implements MainView, ItemAdapter.Delegate {
 
     @Bind(R.id.rv_activity_main)
     RecyclerView mRecyclerView;
@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         itemPresenter = new MainPresenter(this);
         itemAdapter = new ItemAdapter();
+        itemAdapter.setDelegate(this);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -94,5 +95,10 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     public void showError(String search) {
         Toast.makeText(this, "Failed to retrieve items for " + search, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemClicked(ItemAdapter itemAdapter, String item) {
+        
     }
 }
