@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.gmail.markdevw.trying_mvp.R;
+import com.gmail.markdevw.trying_mvp.item.view.ItemActivity;
 import com.gmail.markdevw.trying_mvp.main.adapters.ItemAdapter;
 import com.gmail.markdevw.trying_mvp.main.presenter.ItemPresenter;
 import com.gmail.markdevw.trying_mvp.main.presenter.MainPresenter;
@@ -99,6 +100,6 @@ public class MainActivity extends AppCompatActivity implements MainView, ItemAda
 
     @Override
     public void onItemClicked(ItemAdapter itemAdapter, String item) {
-        
+        startActivity(ItemActivity.newIntent(this, item));
     }
 }
